@@ -1,0 +1,31 @@
+{
+  "agent_name": "Jira Intelligence Agent",
+  "agent_id": "696e58f5e1e4c42b224b27bd",
+  "test_message": "Fetch all Jira tickets for Acme Corp and analyze status",
+  "expected_purpose": "analyzer",
+  "timestamp": "2026-01-19T16:22:16.266007",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "error",
+    "result": {
+      "tickets": [],
+      "project_status": {
+        "active_projects": [],
+        "completion_percentage": 0
+      },
+      "open_issues": [],
+      "blockers": [],
+      "sla_compliance": {
+        "compliant": true,
+        "violations": []
+      }
+    },
+    "message": "Jira data for Acme Corp is not available. Please provide access to the relevant Jira instance or supply additional details such as a project key or customer ID.",
+    "metadata": {
+      "agent_name": "Jira Intelligence Agent",
+      "timestamp": "2024-06-13T13:47:37Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"error\",\n  \"result\": {\n    \"tickets\": [],\n    \"project_status\": {\n      \"active_projects\": [],\n      \"completion_percentage\": 0\n    },\n    \"open_issues\": [],\n    \"blockers\": [],\n    \"sla_compliance\": {\n      \"compliant\": true,\n      \"violations\": []\n    }\n  },\n  \"message\": \"Jira data for Acme Corp is not available. Please provide access to the relevant Jira instance or supply additional details such as a project key or customer ID.\",\n  \"metadata\": {\n    \"agent_name\": \"Jira Intelligence Agent\",\n    \"timestamp\": \"2024-06-13T13:47:37Z\"\n  }\n}"
+}

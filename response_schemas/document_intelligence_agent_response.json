@@ -1,0 +1,73 @@
+{
+  "agent_name": "Document Intelligence Agent",
+  "agent_id": "696e58c0c3a33af8ef06367e",
+  "agent_purpose": "analyzer",
+  "description": "Analyzes Google Docs to extract key information from proposals, contracts, and shared materials",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "documents": [
+        "any"
+      ],
+      "key_information": {
+        "proposals": [
+          "any"
+        ],
+        "contracts": [
+          "any"
+        ],
+        "shared_materials": [
+          "any"
+        ]
+      },
+      "insights": [
+        "any"
+      ]
+    },
+    "message": "string",
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "error",
+    "result": {
+      "documents": [],
+      "key_information": {
+        "proposals": [],
+        "contracts": [],
+        "shared_materials": []
+      },
+      "insights": []
+    },
+    "message": "No document data is available to search for Acme Corp proposals and contracts.",
+    "metadata": {
+      "agent_name": "Document Intelligence Agent",
+      "timestamp": "2024-06-17T09:30:36Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-19T16:22:11.299575",
+  "test_message_used": "Analyze this sample data for testing",
+  "raw_test_response": "Could you please clarify what you mean by \"sample data\"? Are you requesting analysis of a specific customer document, or do you want to upload or reference a data sample for testing? Please provide the sample data or specify which document you'd like analyzed.",
+  "test_error": "Response not valid JSON: Expecting value: line 1 column 1 (char 0)",
+  "actual_test_response": {
+    "status": "error",
+    "result": {
+      "documents": [],
+      "key_information": {
+        "proposals": [],
+        "contracts": [],
+        "shared_materials": []
+      },
+      "insights": []
+    },
+    "message": "No document data is available to search for Acme Corp proposals and contracts.",
+    "metadata": {
+      "agent_name": "Document Intelligence Agent",
+      "timestamp": "2024-06-17T09:30:36Z"
+    }
+  },
+  "test_passed": true
+}

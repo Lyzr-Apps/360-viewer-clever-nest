@@ -1,0 +1,28 @@
+{
+  "agent_name": "Meeting Notes Agent",
+  "agent_id": "696e58dee1e4c42b224b27bc",
+  "test_message": "Analyze meeting notes for Acme Corp to extract action items and decisions",
+  "expected_purpose": "analyzer",
+  "timestamp": "2026-01-19T16:22:14.297698",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "decisions": [],
+      "action_items": [],
+      "customer_feedback": [],
+      "meeting_summary": {
+        "total_meetings": 0,
+        "date_range": "",
+        "key_topics": []
+      },
+      "actionable_insights": []
+    },
+    "metadata": {
+      "agent_name": "Meeting Notes Agent",
+      "timestamp": "2024-06-13T17:20:47Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"decisions\": [],\n    \"action_items\": [],\n    \"customer_feedback\": [],\n    \"meeting_summary\": {\n      \"total_meetings\": 0,\n      \"date_range\": \"\",\n      \"key_topics\": []\n    },\n    \"actionable_insights\": []\n  },\n  \"metadata\": {\n    \"agent_name\": \"Meeting Notes Agent\",\n    \"timestamp\": \"2024-06-13T17:20:47Z\"\n  }\n}"
+}

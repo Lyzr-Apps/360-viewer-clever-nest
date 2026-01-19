@@ -1,0 +1,163 @@
+{
+  "workflow_name": "Customer Intelligence System",
+  "description": "Comprehensive customer intelligence gathering system with 1 manager and 5 sub-agents",
+  "nodes": [
+    {
+      "id": "input_node",
+      "type": "Input",
+      "label": "Customer Input",
+      "nodeCategory": "input",
+      "position": { "x": 100, "y": 300 }
+    },
+    {
+      "id": "manager_agent",
+      "type": "Agent",
+      "label": "Customer Intelligence Coordinator",
+      "nodeCategory": "agent",
+      "agent_id": "696e5915e1e4c42b224b27c2",
+      "position": { "x": 400, "y": 300 }
+    },
+    {
+      "id": "slack_agent",
+      "type": "Agent",
+      "label": "Slack Intelligence Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696e5896c3a33af8ef063674",
+      "position": { "x": 700, "y": 100 }
+    },
+    {
+      "id": "email_agent",
+      "type": "Agent",
+      "label": "Email Intelligence Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696e58aae1e4c42b224b27ae",
+      "position": { "x": 700, "y": 200 }
+    },
+    {
+      "id": "document_agent",
+      "type": "Agent",
+      "label": "Document Intelligence Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696e58c0c3a33af8ef06367e",
+      "position": { "x": 700, "y": 300 }
+    },
+    {
+      "id": "meeting_agent",
+      "type": "Agent",
+      "label": "Meeting Notes Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696e58dee1e4c42b224b27bc",
+      "position": { "x": 700, "y": 400 }
+    },
+    {
+      "id": "jira_agent",
+      "type": "Agent",
+      "label": "Jira Intelligence Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696e58f5e1e4c42b224b27bd",
+      "position": { "x": 700, "y": 500 }
+    },
+    {
+      "id": "output_node",
+      "type": "Output",
+      "label": "Unified Customer Intelligence",
+      "nodeCategory": "end",
+      "position": { "x": 1000, "y": 300 }
+    }
+  ],
+  "edges": [
+    { "source": "input_node", "target": "manager_agent" },
+    { "source": "manager_agent", "target": "slack_agent" },
+    { "source": "manager_agent", "target": "email_agent" },
+    { "source": "manager_agent", "target": "document_agent" },
+    { "source": "manager_agent", "target": "meeting_agent" },
+    { "source": "manager_agent", "target": "jira_agent" },
+    { "source": "slack_agent", "target": "output_node" },
+    { "source": "email_agent", "target": "output_node" },
+    { "source": "document_agent", "target": "output_node" },
+    { "source": "meeting_agent", "target": "output_node" },
+    { "source": "jira_agent", "target": "output_node" }
+  ],
+  "agents": [
+    {
+      "agent_id": "696e5915e1e4c42b224b27c2",
+      "name": "Customer Intelligence Coordinator",
+      "type": "manager",
+      "description": "Orchestrates data retrieval from all sources, aggregates insights, calculates health scores, identifies sentiment patterns, and compiles unified customer view with action items",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": [],
+      "managed_agents": [
+        "696e5896c3a33af8ef063674",
+        "696e58aae1e4c42b224b27ae",
+        "696e58c0c3a33af8ef06367e",
+        "696e58dee1e4c42b224b27bc",
+        "696e58f5e1e4c42b224b27bd"
+      ]
+    },
+    {
+      "agent_id": "696e5896c3a33af8ef063674",
+      "name": "Slack Intelligence Agent",
+      "type": "sub-agent",
+      "description": "Fetches customer-related Slack channel history, extracts conversation themes, sentiment, and identifies key discussion points",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": ["slack"]
+    },
+    {
+      "agent_id": "696e58aae1e4c42b224b27ae",
+      "name": "Email Intelligence Agent",
+      "type": "sub-agent",
+      "description": "Retrieves Gmail threads with customer contacts, analyzes email sentiment, extracts commitments and follow-up items",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": ["gmail"]
+    },
+    {
+      "agent_id": "696e58c0c3a33af8ef06367e",
+      "name": "Document Intelligence Agent",
+      "type": "sub-agent",
+      "description": "Searches Google Docs for customer-related documents, extracts key information from proposals, contracts, and shared materials",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": ["googledocs"]
+    },
+    {
+      "agent_id": "696e58dee1e4c42b224b27bc",
+      "name": "Meeting Notes Agent",
+      "type": "sub-agent",
+      "description": "Analyzes meeting notes and transcripts to extract decisions, action items, and customer feedback",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": [],
+      "knowledge_base": {
+        "rag_id": "696e58d0703720a565f3551a",
+        "rag_name": "meetingnoteskbru1x",
+        "name": "Meeting Notes KB"
+      }
+    },
+    {
+      "agent_id": "696e58f5e1e4c42b224b27bd",
+      "name": "Jira Intelligence Agent",
+      "type": "sub-agent",
+      "description": "Fetches all Jira tickets associated with customer, analyzes project status, open issues, blockers, and SLA compliance",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": ["jira"]
+    }
+  ],
+  "created_at": "2026-01-19T00:00:00Z",
+  "updated_at": "2026-01-19T00:00:00Z"
+}

@@ -1,0 +1,74 @@
+{
+  "agent_name": "Meeting Notes Agent",
+  "agent_id": "696e58dee1e4c42b224b27bc",
+  "agent_purpose": "analyzer",
+  "description": "Analyzes meeting notes and transcripts to extract decisions, action items, and customer feedback",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "decisions": [
+        "any"
+      ],
+      "action_items": [
+        "any"
+      ],
+      "customer_feedback": [
+        "any"
+      ],
+      "meeting_summary": {
+        "total_meetings": "number",
+        "date_range": "string",
+        "key_topics": [
+          "any"
+        ]
+      },
+      "actionable_insights": [
+        "any"
+      ]
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "decisions": [],
+      "action_items": [],
+      "customer_feedback": [],
+      "meeting_summary": {
+        "total_meetings": 0,
+        "date_range": "",
+        "key_topics": []
+      },
+      "actionable_insights": []
+    },
+    "metadata": {
+      "agent_name": "Meeting Notes Agent",
+      "timestamp": "2024-06-13T17:20:47Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-19T16:22:14.301287",
+  "test_message_used": "Analyze this sample data for testing",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "decisions": [],
+      "action_items": [],
+      "customer_feedback": [],
+      "meeting_summary": {
+        "total_meetings": 0,
+        "date_range": "",
+        "key_topics": []
+      },
+      "actionable_insights": []
+    },
+    "metadata": {
+      "agent_name": "Meeting Notes Agent",
+      "timestamp": "2024-06-13T17:20:47Z"
+    }
+  },
+  "test_passed": true
+}

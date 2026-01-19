@@ -1,0 +1,55 @@
+{
+  "agent_name": "Customer Intelligence Coordinator",
+  "agent_id": "696e5915e1e4c42b224b27c2",
+  "test_message": "Analyze complete customer intelligence for Acme Corp",
+  "expected_purpose": "manager",
+  "timestamp": "2026-01-19T16:22:20.616606",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "error",
+    "result": {
+      "customer_name": "Acme Corp",
+      "health_score": 0,
+      "health_trend": "stable",
+      "overall_sentiment": {
+        "score": 0.0,
+        "label": "neutral"
+      },
+      "data_sources": {
+        "slack": {
+          "status": "unavailable",
+          "data": {}
+        },
+        "email": {
+          "status": "unavailable",
+          "data": {}
+        },
+        "documents": {
+          "status": "unavailable",
+          "data": {}
+        },
+        "meetings": {
+          "status": "unavailable",
+          "data": {}
+        },
+        "jira": {
+          "status": "unavailable",
+          "data": {}
+        }
+      },
+      "recent_communications": [],
+      "project_status": [],
+      "open_issues": [],
+      "action_items": []
+    },
+    "message": "No data retrieved from any source for Acme Corp. Unable to perform analysis. Please check connectivity to customer data sources.",
+    "metadata": {
+      "agent_name": "Customer Intelligence Coordinator",
+      "timestamp": "2024-06-11T13:39:52Z",
+      "sources_queried": 5,
+      "sources_available": 0
+    }
+  },
+  "raw_response": "{\n  \"status\": \"error\",\n  \"result\": {\n    \"customer_name\": \"Acme Corp\",\n    \"health_score\": 0,\n    \"health_trend\": \"stable\",\n    \"overall_sentiment\": {\n      \"score\": 0.0,\n      \"label\": \"neutral\"\n    },\n    \"data_sources\": {\n      \"slack\": { \"status\": \"unavailable\", \"data\": {} },\n      \"email\": { \"status\": \"unavailable\", \"data\": {} },\n      \"documents\": { \"status\": \"unavailable\", \"data\": {} },\n      \"meetings\": { \"status\": \"unavailable\", \"data\": {} },\n      \"jira\": { \"status\": \"unavailable\", \"data\": {} }\n    },\n    \"recent_communications\": [],\n    \"project_status\": [],\n    \"open_issues\": [],\n    \"action_items\": []\n  },\n  \"message\": \"No data retrieved from any source for Acme Corp. Unable to perform analysis. Please check connectivity to customer data sources.\",\n  \"metadata\": {\n    \"agent_name\": \"Customer Intelligence Coordinator\",\n    \"timestamp\": \"2024-06-11T13:39:52Z\",\n    \"sources_queried\": 5,\n    \"sources_available\": 0\n  }\n}"
+}

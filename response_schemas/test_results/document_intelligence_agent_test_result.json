@@ -1,0 +1,27 @@
+{
+  "agent_name": "Document Intelligence Agent",
+  "agent_id": "696e58c0c3a33af8ef06367e",
+  "test_message": "Search Google Docs for Acme Corp proposals and contracts",
+  "expected_purpose": "analyzer",
+  "timestamp": "2026-01-19T16:22:11.297556",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "error",
+    "result": {
+      "documents": [],
+      "key_information": {
+        "proposals": [],
+        "contracts": [],
+        "shared_materials": []
+      },
+      "insights": []
+    },
+    "message": "No document data is available to search for Acme Corp proposals and contracts.",
+    "metadata": {
+      "agent_name": "Document Intelligence Agent",
+      "timestamp": "2024-06-17T09:30:36Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"error\",\n  \"result\": {\n    \"documents\": [],\n    \"key_information\": {\n      \"proposals\": [],\n      \"contracts\": [],\n      \"shared_materials\": []\n    },\n    \"insights\": []\n  },\n  \"message\": \"No document data is available to search for Acme Corp proposals and contracts.\",\n  \"metadata\": {\n    \"agent_name\": \"Document Intelligence Agent\",\n    \"timestamp\": \"2024-06-17T09:30:36Z\"\n  }\n}"
+}

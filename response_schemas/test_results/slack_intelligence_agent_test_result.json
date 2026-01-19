@@ -1,0 +1,27 @@
+{
+  "agent_name": "Slack Intelligence Agent",
+  "agent_id": "696e5896c3a33af8ef063674",
+  "test_message": "Analyze Slack conversations for customer 'Acme Corp'",
+  "expected_purpose": "analyzer",
+  "timestamp": "2026-01-19T16:22:06.744507",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "error",
+    "result": {
+      "conversations": [],
+      "themes": [],
+      "sentiment": {
+        "overall": "neutral",
+        "score": 0.0
+      },
+      "key_points": []
+    },
+    "message": "No Slack conversation data available for customer 'Acme Corp'. Please provide a valid Slack channel name or ensure the channel history is accessible.",
+    "metadata": {
+      "agent_name": "Slack Intelligence Agent",
+      "timestamp": "2024-06-13T13:27:16Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"error\",\n  \"result\": {\n    \"conversations\": [],\n    \"themes\": [],\n    \"sentiment\": {\n      \"overall\": \"neutral\",\n      \"score\": 0.0\n    },\n    \"key_points\": []\n  },\n  \"message\": \"No Slack conversation data available for customer 'Acme Corp'. Please provide a valid Slack channel name or ensure the channel history is accessible.\",\n  \"metadata\": {\n    \"agent_name\": \"Slack Intelligence Agent\",\n    \"timestamp\": \"2024-06-13T13:27:16Z\"\n  }\n}"
+}

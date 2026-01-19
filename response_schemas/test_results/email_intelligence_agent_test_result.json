@@ -1,0 +1,27 @@
+{
+  "agent_name": "Email Intelligence Agent",
+  "agent_id": "696e58aae1e4c42b224b27ae",
+  "test_message": "Fetch and analyze Gmail threads with Acme Corp contacts",
+  "expected_purpose": "analyzer",
+  "timestamp": "2026-01-19T16:22:09.478233",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "error",
+    "result": {
+      "email_threads": [],
+      "sentiment": {
+        "overall": "neutral",
+        "score": 0.0
+      },
+      "commitments": [],
+      "follow_up_items": []
+    },
+    "message": "No Gmail thread data available for contacts at Acme Corp. Please ensure integration with your Gmail account or provide sample email data to proceed.",
+    "metadata": {
+      "agent_name": "Email Intelligence Agent",
+      "timestamp": "2024-06-13T13:00:39Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"error\",\n  \"result\": {\n    \"email_threads\": [],\n    \"sentiment\": {\n      \"overall\": \"neutral\",\n      \"score\": 0.0\n    },\n    \"commitments\": [],\n    \"follow_up_items\": []\n  },\n  \"message\": \"No Gmail thread data available for contacts at Acme Corp. Please ensure integration with your Gmail account or provide sample email data to proceed.\",\n  \"metadata\": {\n    \"agent_name\": \"Email Intelligence Agent\",\n    \"timestamp\": \"2024-06-13T13:00:39Z\"\n  }\n}"
+}
