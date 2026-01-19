@@ -1,0 +1,31 @@
+{
+  "agent_name": "Sheets Intelligence Agent",
+  "agent_id": "696e5f39c3a33af8ef063753",
+  "test_message": "Analyze Google Sheets data for Acme Corp to extract metrics and trends. The sheet contains customer engagement data with columns: Customer Name, Monthly Revenue, Engagement Score, Last Purchase Date, Product Category, and Total Transactions.",
+  "expected_purpose": "analyzer",
+  "timestamp": "2026-01-19T16:46:09.945148",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "error",
+    "result": {
+      "metrics": [],
+      "trends": {
+        "revenue": "stable",
+        "engagement": "stable"
+      },
+      "kpis": [],
+      "data_summary": {
+        "total_records": 0,
+        "date_range": "",
+        "key_findings": []
+      }
+    },
+    "message": "No specific Google Sheets data is available for Acme Corp in the knowledge base. Please provide access to the sheet data or upload the relevant information to proceed with the analysis.",
+    "metadata": {
+      "agent_name": "Sheets Intelligence Agent",
+      "timestamp": "2024-06-09T08:22:05Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"error\",\n  \"result\": {\n    \"metrics\": [],\n    \"trends\": {\n      \"revenue\": \"stable\",\n      \"engagement\": \"stable\"\n    },\n    \"kpis\": [],\n    \"data_summary\": {\n      \"total_records\": 0,\n      \"date_range\": \"\",\n      \"key_findings\": []\n    }\n  },\n  \"message\": \"No specific Google Sheets data is available for Acme Corp in the knowledge base. Please provide access to the sheet data or upload the relevant information to proceed with the analysis.\",\n  \"metadata\": {\n    \"agent_name\": \"Sheets Intelligence Agent\",\n    \"timestamp\": \"2024-06-09T08:22:05Z\"\n  }\n}"
+}

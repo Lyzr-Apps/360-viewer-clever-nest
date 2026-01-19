@@ -1,9 +1,9 @@
 {
   "workflow_status": "complete",
-  "total_agents": 6,
+  "total_agents": 7,
   "manager_agents": 1,
-  "sub_agents": 5,
-  "knowledge_bases": 1,
+  "sub_agents": 6,
+  "knowledge_bases": 2,
   "agent_ids": {
     "manager": {
       "Customer Intelligence Coordinator": "696e5915e1e4c42b224b27c2"
@@ -13,7 +13,8 @@
       "Email Intelligence Agent": "696e58aae1e4c42b224b27ae",
       "Document Intelligence Agent": "696e58c0c3a33af8ef06367e",
       "Meeting Notes Agent": "696e58dee1e4c42b224b27bc",
-      "Jira Intelligence Agent": "696e58f5e1e4c42b224b27bd"
+      "Jira Intelligence Agent": "696e58f5e1e4c42b224b27bd",
+      "Sheets Intelligence Agent": "696e5f39c3a33af8ef063753"
     }
   },
   "knowledge_bases": {
@@ -21,6 +22,11 @@
       "rag_id": "696e58d0703720a565f3551a",
       "rag_name": "meetingnoteskbru1x",
       "linked_to_agent": "696e58dee1e4c42b224b27bc"
+    },
+    "Google Sheets Data KB": {
+      "rag_id": "696e5f29e89016e6a4fb0ccf",
+      "rag_name": "googlesheetsdatakbfe6x",
+      "linked_to_agent": "696e5f39c3a33af8ef063753"
     }
   },
   "response_schemas_created": [
@@ -29,6 +35,7 @@
     "document_intelligence_agent_response.json",
     "meeting_notes_agent_response.json",
     "jira_intelligence_agent_response.json",
+    "sheets_intelligence_agent_response.json",
     "customer_intelligence_coordinator_response.json"
   ],
   "last_updated": "2026-01-19T00:00:00Z"

@@ -1,6 +1,6 @@
 {
   "workflow_name": "Customer Intelligence System",
-  "description": "Comprehensive customer intelligence gathering system with 1 manager and 5 sub-agents",
+  "description": "Comprehensive customer intelligence gathering system with 1 manager and 6 sub-agents",
   "nodes": [
     {
       "id": "input_node",
@@ -58,6 +58,14 @@
       "position": { "x": 700, "y": 500 }
     },
     {
+      "id": "sheets_agent",
+      "type": "Agent",
+      "label": "Sheets Intelligence Agent",
+      "nodeCategory": "agent",
+      "agent_id": "696e5f39c3a33af8ef063753",
+      "position": { "x": 700, "y": 600 }
+    },
+    {
       "id": "output_node",
       "type": "Output",
       "label": "Unified Customer Intelligence",
@@ -72,11 +80,13 @@
     { "source": "manager_agent", "target": "document_agent" },
     { "source": "manager_agent", "target": "meeting_agent" },
     { "source": "manager_agent", "target": "jira_agent" },
+    { "source": "manager_agent", "target": "sheets_agent" },
     { "source": "slack_agent", "target": "output_node" },
     { "source": "email_agent", "target": "output_node" },
     { "source": "document_agent", "target": "output_node" },
     { "source": "meeting_agent", "target": "output_node" },
-    { "source": "jira_agent", "target": "output_node" }
+    { "source": "jira_agent", "target": "output_node" },
+    { "source": "sheets_agent", "target": "output_node" }
   ],
   "agents": [
     {
@@ -94,7 +104,8 @@
         "696e58aae1e4c42b224b27ae",
         "696e58c0c3a33af8ef06367e",
         "696e58dee1e4c42b224b27bc",
-        "696e58f5e1e4c42b224b27bd"
+        "696e58f5e1e4c42b224b27bd",
+        "696e5f39c3a33af8ef063753"
       ]
     },
     {
@@ -156,6 +167,22 @@
       "temperature": 0.3,
       "top_p": 1,
       "tools": ["jira"]
+    },
+    {
+      "agent_id": "696e5f39c3a33af8ef063753",
+      "name": "Sheets Intelligence Agent",
+      "type": "sub-agent",
+      "description": "Analyzes customer data from Google Sheets, extracts metrics, trends, and key performance indicators",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": [],
+      "knowledge_base": {
+        "rag_id": "696e5f29e89016e6a4fb0ccf",
+        "rag_name": "googlesheetsdatakbfe6x",
+        "name": "Google Sheets Data KB"
+      }
     }
   ],
   "created_at": "2026-01-19T00:00:00Z",

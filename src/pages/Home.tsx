@@ -31,6 +31,10 @@ import {
   RefreshCw,
   AlertTriangle,
   XCircle,
+  Table,
+  ArrowUp,
+  ArrowDown,
+  Minus,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -38,6 +42,7 @@ import { cn } from '@/lib/utils'
 // AGENT IDS - From workflow
 // =============================================================================
 const COORDINATOR_AGENT_ID = '696e5915e1e4c42b224b27c2'
+const SHEETS_INTELLIGENCE_AGENT_ID = '696e5f39c3a33af8ef063753'
 
 // =============================================================================
 // TypeScript Interfaces - Based on ACTUAL test responses
@@ -51,6 +56,33 @@ interface SentimentData {
 interface DataSource {
   status: string
   data: Record<string, any>
+}
+
+interface MetricItem {
+  name: string
+  value: number
+  unit?: string
+}
+
+interface KPIItem {
+  name: string
+  value: number
+  target: number
+  status: string
+}
+
+interface SheetsData {
+  metrics: MetricItem[]
+  trends: {
+    revenue: 'increasing' | 'stable' | 'decreasing'
+    engagement: 'increasing' | 'stable' | 'decreasing'
+  }
+  kpis: KPIItem[]
+  data_summary: {
+    total_records: number
+    date_range: string
+    key_findings: string[]
+  }
 }
 
 interface CoordinatorResult {
@@ -67,6 +99,7 @@ interface CoordinatorResult {
     documents: DataSource
     meetings: DataSource
     jira: DataSource
+    sheets: DataSource
   }
   recent_communications: any[]
   project_status: any[]
@@ -341,6 +374,31 @@ export default function Home() {
       documents: { status: 'sample', data: {} },
       meetings: { status: 'sample', data: {} },
       jira: { status: 'sample', data: {} },
+      sheets: {
+        status: 'sample',
+        data: {
+          metrics: [
+            { name: 'Monthly Revenue', value: 45000, unit: 'USD' },
+            { name: 'Engagement Score', value: 8.2, unit: '/10' },
+            { name: 'Active Users', value: 1250, unit: 'users' },
+          ],
+          trends: { revenue: 'increasing', engagement: 'stable' },
+          kpis: [
+            { name: 'Revenue Growth', value: 12, target: 10, status: 'on-track' },
+            { name: 'User Retention', value: 94, target: 90, status: 'on-track' },
+            { name: 'Product Adoption', value: 78, target: 85, status: 'at-risk' },
+          ],
+          data_summary: {
+            total_records: 156,
+            date_range: '2024-01-01 to 2024-12-31',
+            key_findings: [
+              'Revenue increased 12% YoY',
+              'Engagement stable at 8.2/10',
+              'User base grew by 23% this quarter',
+            ],
+          },
+        },
+      },
     },
     recent_communications: SAMPLE_COMMUNICATIONS,
     project_status: SAMPLE_PROJECTS,
@@ -496,8 +554,8 @@ export default function Home() {
                   )}
                 </Button>
                 <div className="text-sm text-slate-400">
-                  {loading && 'Gathering intelligence from 5 sources...'}
-                  {agentResponse && `Data sources: ${availableSources}/5 available`}
+                  {loading && 'Gathering intelligence from 6 sources...'}
+                  {agentResponse && `Data sources: ${availableSources}/6 available`}
                 </div>
               </div>
 
@@ -640,6 +698,7 @@ export default function Home() {
                                 )}
                                 {source === 'meetings' && <Video className="h-3 w-3" />}
                                 {source === 'jira' && <ListChecks className="h-3 w-3" />}
+                                {source === 'sheets' && <Table className="h-3 w-3 text-purple-400" />}
                                 {source}
                               </span>
                               <Badge
@@ -662,6 +721,246 @@ export default function Home() {
                       )}
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+
+              {/* Google Sheets Metrics & KPIs */}
+              <Card className="bg-slate-800/50 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-white text-lg flex items-center gap-2">
+                    <Table className="h-5 w-5 text-purple-400" />
+                    Google Sheets Metrics
+                  </CardTitle>
+                  <CardDescription className="text-slate-400">
+                    Key performance indicators and trends
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {displayData.data_sources.sheets?.data && (
+                    <div className="space-y-6">
+                      {/* Key Metrics */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-slate-300 mb-3">
+                          Key Metrics
+                        </h4>
+                        <div className="grid grid-cols-3 gap-3">
+                          {(displayData.data_sources.sheets.data as SheetsData).metrics?.map(
+                            (metric, i) => (
+                              <div
+                                key={i}
+                                className="p-3 rounded-lg bg-slate-900/50 border border-slate-700"
+                              >
+                                <p className="text-xs text-slate-400 mb-1">
+                                  {metric.name}
+                                </p>
+                                <p className="text-lg font-bold text-white">
+                                  {metric.unit === 'USD'
+                                    ? `$${metric.value.toLocaleString()}`
+                                    : metric.value.toLocaleString()}
+                                  {metric.unit && metric.unit !== 'USD' && (
+                                    <span className="text-xs text-slate-400 ml-1">
+                                      {metric.unit}
+                                    </span>
+                                  )}
+                                </p>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Trends */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-slate-300 mb-3">
+                          Trends
+                        </h4>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span className="text-sm text-slate-400">Revenue</span>
+                            <div className="flex items-center gap-1">
+                              {(displayData.data_sources.sheets.data as SheetsData)
+                                .trends.revenue === 'increasing' && (
+                                <ArrowUp className="h-4 w-4 text-green-400" />
+                              )}
+                              {(displayData.data_sources.sheets.data as SheetsData)
+                                .trends.revenue === 'decreasing' && (
+                                <ArrowDown className="h-4 w-4 text-red-400" />
+                              )}
+                              {(displayData.data_sources.sheets.data as SheetsData)
+                                .trends.revenue === 'stable' && (
+                                <Minus className="h-4 w-4 text-slate-400" />
+                              )}
+                              <span
+                                className={cn(
+                                  'text-sm font-semibold capitalize',
+                                  (displayData.data_sources.sheets.data as SheetsData)
+                                    .trends.revenue === 'increasing' &&
+                                    'text-green-400',
+                                  (displayData.data_sources.sheets.data as SheetsData)
+                                    .trends.revenue === 'decreasing' &&
+                                    'text-red-400',
+                                  (displayData.data_sources.sheets.data as SheetsData)
+                                    .trends.revenue === 'stable' &&
+                                    'text-slate-400'
+                                )}
+                              >
+                                {
+                                  (displayData.data_sources.sheets.data as SheetsData)
+                                    .trends.revenue
+                                }
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span className="text-sm text-slate-400">
+                              Engagement
+                            </span>
+                            <div className="flex items-center gap-1">
+                              {(displayData.data_sources.sheets.data as SheetsData)
+                                .trends.engagement === 'increasing' && (
+                                <ArrowUp className="h-4 w-4 text-green-400" />
+                              )}
+                              {(displayData.data_sources.sheets.data as SheetsData)
+                                .trends.engagement === 'decreasing' && (
+                                <ArrowDown className="h-4 w-4 text-red-400" />
+                              )}
+                              {(displayData.data_sources.sheets.data as SheetsData)
+                                .trends.engagement === 'stable' && (
+                                <Minus className="h-4 w-4 text-slate-400" />
+                              )}
+                              <span
+                                className={cn(
+                                  'text-sm font-semibold capitalize',
+                                  (displayData.data_sources.sheets.data as SheetsData)
+                                    .trends.engagement === 'increasing' &&
+                                    'text-green-400',
+                                  (displayData.data_sources.sheets.data as SheetsData)
+                                    .trends.engagement === 'decreasing' &&
+                                    'text-red-400',
+                                  (displayData.data_sources.sheets.data as SheetsData)
+                                    .trends.engagement === 'stable' &&
+                                    'text-slate-400'
+                                )}
+                              >
+                                {
+                                  (displayData.data_sources.sheets.data as SheetsData)
+                                    .trends.engagement
+                                }
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* KPIs */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-slate-300 mb-3">
+                          KPIs
+                        </h4>
+                        <div className="space-y-3">
+                          {(displayData.data_sources.sheets.data as SheetsData).kpis?.map(
+                            (kpi, i) => (
+                              <div key={i} className="space-y-1">
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-slate-300">{kpi.name}</span>
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-white font-semibold">
+                                      {kpi.value}
+                                    </span>
+                                    <span className="text-slate-500">/</span>
+                                    <span className="text-slate-400">
+                                      {kpi.target}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <Progress
+                                    value={(kpi.value / kpi.target) * 100}
+                                    className="h-1.5"
+                                  />
+                                  <Badge
+                                    variant="outline"
+                                    className={cn(
+                                      'text-xs',
+                                      kpi.status === 'on-track'
+                                        ? 'text-green-400 border-green-500/50'
+                                        : kpi.status === 'at-risk'
+                                          ? 'text-amber-400 border-amber-500/50'
+                                          : 'text-red-400 border-red-500/50'
+                                    )}
+                                  >
+                                    {kpi.status === 'on-track'
+                                      ? 'On Track'
+                                      : kpi.status === 'at-risk'
+                                        ? 'At Risk'
+                                        : 'Behind'}
+                                  </Badge>
+                                </div>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Data Summary */}
+                      {(displayData.data_sources.sheets.data as SheetsData)
+                        .data_summary && (
+                        <div>
+                          <h4 className="text-sm font-semibold text-slate-300 mb-3">
+                            Data Summary
+                          </h4>
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-sm p-2 rounded bg-slate-900/50">
+                              <span className="text-slate-400">Total Records</span>
+                              <span className="text-white font-semibold">
+                                {(
+                                  displayData.data_sources.sheets
+                                    .data as SheetsData
+                                ).data_summary.total_records.toLocaleString()}
+                              </span>
+                            </div>
+                            <div className="flex justify-between text-sm p-2 rounded bg-slate-900/50">
+                              <span className="text-slate-400">Date Range</span>
+                              <span className="text-white text-xs">
+                                {
+                                  (
+                                    displayData.data_sources.sheets
+                                      .data as SheetsData
+                                  ).data_summary.date_range
+                                }
+                              </span>
+                            </div>
+                            {(displayData.data_sources.sheets.data as SheetsData)
+                              .data_summary.key_findings.length > 0 && (
+                              <div className="p-2 rounded bg-slate-900/50">
+                                <p className="text-xs text-slate-400 mb-2">
+                                  Key Findings:
+                                </p>
+                                <ul className="space-y-1">
+                                  {(
+                                    displayData.data_sources.sheets
+                                      .data as SheetsData
+                                  ).data_summary.key_findings.map(
+                                    (finding, i) => (
+                                      <li
+                                        key={i}
+                                        className="text-xs text-slate-300 flex items-start gap-2"
+                                      >
+                                        <span className="text-purple-400 mt-0.5">
+                                          •
+                                        </span>
+                                        <span>{finding}</span>
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
 

@@ -1,0 +1,79 @@
+{
+  "agent_name": "Sheets Intelligence Agent",
+  "agent_id": "696e5f39c3a33af8ef063753",
+  "agent_purpose": "analyzer",
+  "description": "Analyzes customer data from Google Sheets and returns metrics, trends, KPIs, and data summary",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "metrics": [
+        "any"
+      ],
+      "trends": {
+        "revenue": "string",
+        "engagement": "string"
+      },
+      "kpis": [
+        "any"
+      ],
+      "data_summary": {
+        "total_records": "number",
+        "date_range": "string",
+        "key_findings": [
+          "any"
+        ]
+      }
+    },
+    "message": "string",
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "error",
+    "result": {
+      "metrics": [],
+      "trends": {
+        "revenue": "stable",
+        "engagement": "stable"
+      },
+      "kpis": [],
+      "data_summary": {
+        "total_records": 0,
+        "date_range": "",
+        "key_findings": []
+      }
+    },
+    "message": "No specific Google Sheets data is available for Acme Corp in the knowledge base. Please provide access to the sheet data or upload the relevant information to proceed with the analysis.",
+    "metadata": {
+      "agent_name": "Sheets Intelligence Agent",
+      "timestamp": "2024-06-09T08:22:05Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-19T16:46:09.946185",
+  "test_message_used": "Analyze this sample data for testing",
+  "actual_test_response": {
+    "status": "error",
+    "result": {
+      "metrics": [],
+      "trends": {
+        "revenue": "stable",
+        "engagement": "stable"
+      },
+      "kpis": [],
+      "data_summary": {
+        "total_records": 0,
+        "date_range": "",
+        "key_findings": []
+      }
+    },
+    "message": "No specific Google Sheets data is available for Acme Corp in the knowledge base. Please provide access to the sheet data or upload the relevant information to proceed with the analysis.",
+    "metadata": {
+      "agent_name": "Sheets Intelligence Agent",
+      "timestamp": "2024-06-09T08:22:05Z"
+    }
+  },
+  "test_passed": true
+}
