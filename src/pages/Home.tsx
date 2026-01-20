@@ -984,7 +984,7 @@ export default function Home() {
                 <CardContent>
                   <ScrollArea className="h-[280px]">
                     <div className="space-y-3">
-                      {displayData.recent_communications.length > 0 ? (
+                      {displayData.recent_communications && displayData.recent_communications.length > 0 ? (
                         displayData.recent_communications.map((comm) => (
                           <CommunicationItem key={comm.id} comm={comm} />
                         ))
@@ -1009,7 +1009,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {displayData.project_status.length > 0 ? (
+                    {displayData.project_status && displayData.project_status.length > 0 ? (
                       displayData.project_status.map((project) => (
                         <div key={project.id} className="space-y-2">
                           <div className="flex items-center justify-between">
@@ -1067,7 +1067,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {displayData.open_issues.length > 0 ? (
+                    {displayData.open_issues && displayData.open_issues.length > 0 ? (
                       displayData.open_issues.map((issue) => (
                         <div
                           key={issue.id}
@@ -1138,7 +1138,7 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  {displayData.action_items.length > 0 ? (
+                  {displayData.action_items && displayData.action_items.length > 0 ? (
                     displayData.action_items.map((item) => (
                       <div
                         key={item.id}
