@@ -744,7 +744,8 @@ export default function Home() {
                           Key Metrics
                         </h4>
                         <div className="grid grid-cols-3 gap-3">
-                          {(displayData.data_sources.sheets.data as SheetsData).metrics?.map(
+                          {Array.isArray((displayData.data_sources.sheets.data as SheetsData)?.metrics) &&
+                            (displayData.data_sources.sheets.data as SheetsData).metrics.map(
                             (metric, i) => (
                               <div
                                 key={i}
@@ -770,6 +771,7 @@ export default function Home() {
                       </div>
 
                       {/* Trends */}
+                      {(displayData.data_sources.sheets.data as SheetsData)?.trends && (
                       <div>
                         <h4 className="text-sm font-semibold text-slate-300 mb-3">
                           Trends
@@ -851,6 +853,7 @@ export default function Home() {
                           </div>
                         </div>
                       </div>
+                      )}
 
                       {/* KPIs */}
                       <div>
@@ -858,7 +861,8 @@ export default function Home() {
                           KPIs
                         </h4>
                         <div className="space-y-3">
-                          {(displayData.data_sources.sheets.data as SheetsData).kpis?.map(
+                          {Array.isArray((displayData.data_sources.sheets.data as SheetsData)?.kpis) &&
+                            (displayData.data_sources.sheets.data as SheetsData).kpis.map(
                             (kpi, i) => (
                               <div key={i} className="space-y-1">
                                 <div className="flex justify-between text-sm">
@@ -930,7 +934,9 @@ export default function Home() {
                                 }
                               </span>
                             </div>
-                            {(displayData.data_sources.sheets.data as SheetsData)
+                            {Array.isArray((displayData.data_sources.sheets.data as SheetsData)
+                              ?.data_summary?.key_findings) &&
+                              (displayData.data_sources.sheets.data as SheetsData)
                               .data_summary.key_findings.length > 0 && (
                               <div className="p-2 rounded bg-slate-900/50">
                                 <p className="text-xs text-slate-400 mb-2">
