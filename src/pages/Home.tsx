@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils'
 // =============================================================================
 // AGENT IDS - From workflow
 // =============================================================================
-const COORDINATOR_AGENT_ID = '696e5915e1e4c42b224b27c2'
+const COORDINATOR_AGENT_ID = '6973547b1b6268d7b95129f9'
 
 // =============================================================================
 // TypeScript Interfaces
@@ -39,7 +39,7 @@ export default function Home() {
     {
       id: '1',
       role: 'assistant',
-      content: 'Hello! I\'m your Customer Intelligence Assistant. I can help you analyze customer data from Slack, Gmail, Google Docs, Meeting Notes, Jira, and Google Sheets. Ask me anything about your customers!',
+      content: 'Hello! I\'m your Customer Intelligence Assistant. I can help you analyze customer data from Slack, Gmail, Google Docs, Meeting Notes, Jira, Google Sheets, and Google Drive. Ask me anything about your customers!',
       timestamp: new Date(),
     },
   ])
@@ -142,9 +142,43 @@ export default function Home() {
       formatted += `**Data Sources:**\n`
       Object.entries(data.data_sources).forEach(([source, info]: [string, any]) => {
         const status = info.status === 'available' ? 'Available' : 'Unavailable'
-        formatted += `- ${source.charAt(0).toUpperCase() + source.slice(1)}: ${status}\n`
+        const sourceName = source === 'googledrive' ? 'Google Drive' : source.charAt(0).toUpperCase() + source.slice(1)
+        formatted += `- ${sourceName}: ${status}\n`
       })
       formatted += '\n'
+    }
+
+    // Google Drive insights
+    if (data.data_sources?.googledrive?.data) {
+      const driveData = data.data_sources.googledrive.data
+      if (driveData.total_files) {
+        formatted += `**Google Drive Files: ${driveData.total_files}**\n`
+        if (driveData.file_types) {
+          formatted += `- Documents: ${driveData.file_types.documents || 0}\n`
+          formatted += `- Spreadsheets: ${driveData.file_types.spreadsheets || 0}\n`
+          formatted += `- Presentations: ${driveData.file_types.presentations || 0}\n`
+        }
+        if (driveData.collaboration_score !== undefined) {
+          formatted += `- Collaboration Score: ${driveData.collaboration_score}/100\n`
+        }
+        formatted += '\n'
+      }
+
+      if (Array.isArray(driveData.recent_files) && driveData.recent_files.length > 0) {
+        formatted += `**Recent Drive Files:**\n`
+        driveData.recent_files.slice(0, 5).forEach((file: any, i: number) => {
+          formatted += `${i + 1}. ${file.name || 'File'} (${file.type || 'unknown'})\n`
+        })
+        formatted += '\n'
+      }
+
+      if (Array.isArray(driveData.key_insights) && driveData.key_insights.length > 0) {
+        formatted += `**Drive Insights:**\n`
+        driveData.key_insights.forEach((insight: string, i: number) => {
+          formatted += `- ${insight}\n`
+        })
+        formatted += '\n'
+      }
     }
 
     // Recent communications
@@ -315,7 +349,7 @@ export default function Home() {
               </Button>
             </div>
             <p className="text-xs text-slate-500 mt-2">
-              Examples: "Analyze customer Acme Corp" • "What are the open issues?" • "Show health scores" • "List recent communications"
+              Examples: "Analyze customer Acme Corp" • "What are the open issues?" • "Show Google Drive files" • "List recent communications"
             </p>
           </div>
         </div>

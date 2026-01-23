@@ -1,12 +1,12 @@
 {
   "workflow_status": "complete",
-  "total_agents": 7,
+  "total_agents": 8,
   "manager_agents": 1,
-  "sub_agents": 6,
-  "knowledge_bases": 2,
+  "sub_agents": 7,
+  "knowledge_bases": 3,
   "agent_ids": {
     "manager": {
-      "Customer Intelligence Coordinator": "696e5915e1e4c42b224b27c2"
+      "Customer Intelligence Coordinator": "6973547b1b6268d7b95129f9"
     },
     "sub_agents": {
       "Slack Intelligence Agent": "696e5896c3a33af8ef063674",
@@ -14,7 +14,8 @@
       "Document Intelligence Agent": "696e58c0c3a33af8ef06367e",
       "Meeting Notes Agent": "696e58dee1e4c42b224b27bc",
       "Jira Intelligence Agent": "696e58f5e1e4c42b224b27bd",
-      "Sheets Intelligence Agent": "696e5f39c3a33af8ef063753"
+      "Sheets Intelligence Agent": "696e5f39c3a33af8ef063753",
+      "Google Drive Intelligence Agent": "697353e41b6268d7b95129d6"
     }
   },
   "knowledge_bases": {
@@ -27,6 +28,11 @@
       "rag_id": "696e5f29e89016e6a4fb0ccf",
       "rag_name": "googlesheetsdatakbfe6x",
       "linked_to_agent": "696e5f39c3a33af8ef063753"
+    },
+    "Google Drive Data KB": {
+      "rag_id": "697353d4115a3970d17427a7",
+      "rag_name": "googledrivedatakbjn3q",
+      "linked_to_agent": "697353e41b6268d7b95129d6"
     }
   },
   "response_schemas_created": [
@@ -36,7 +42,8 @@
     "meeting_notes_agent_response.json",
     "jira_intelligence_agent_response.json",
     "sheets_intelligence_agent_response.json",
-    "customer_intelligence_coordinator_response.json"
+    "customer_intelligence_coordinator_response.json",
+    "google_drive_intelligence_agent_response.json"
   ],
-  "last_updated": "2026-01-19T00:00:00Z"
+  "last_updated": "2026-01-23T00:00:00Z"
 }

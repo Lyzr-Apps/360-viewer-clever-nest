@@ -1,0 +1,64 @@
+{
+  "agent_name": "Google Drive Intelligence Agent",
+  "agent_id": "697353e41b6268d7b95129d6",
+  "agent_purpose": "analyzer",
+  "description": "Analyzes Google Drive files and folders to extract customer insights, collaboration patterns, and file metadata",
+  "response_schema": {
+    "status": "string",
+    "data": {
+      "total_files": "number",
+      "recent_files": [
+        "any"
+      ],
+      "file_types": {
+        "documents": "number",
+        "spreadsheets": "number",
+        "presentations": "number",
+        "others": "number"
+      },
+      "shared_files": "number",
+      "collaboration_score": "number",
+      "key_insights": [
+        "any"
+      ]
+    },
+    "last_synced": "null"
+  },
+  "example_response": {
+    "status": "unavailable",
+    "data": {
+      "total_files": 0,
+      "recent_files": [],
+      "file_types": {
+        "documents": 0,
+        "spreadsheets": 0,
+        "presentations": 0,
+        "others": 0
+      },
+      "shared_files": 0,
+      "collaboration_score": 0,
+      "key_insights": []
+    },
+    "last_synced": null
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-01-23T10:56:48.596815",
+  "test_message_used": "Analyze this sample data for testing",
+  "actual_test_response": {
+    "status": "unavailable",
+    "data": {
+      "total_files": 0,
+      "recent_files": [],
+      "file_types": {
+        "documents": 0,
+        "spreadsheets": 0,
+        "presentations": 0,
+        "others": 0
+      },
+      "shared_files": 0,
+      "collaboration_score": 0,
+      "key_insights": []
+    },
+    "last_synced": null
+  }
+}

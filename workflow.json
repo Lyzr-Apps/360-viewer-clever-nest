@@ -1,6 +1,6 @@
 {
   "workflow_name": "Customer Intelligence System",
-  "description": "Comprehensive customer intelligence gathering system with 1 manager and 6 sub-agents",
+  "description": "Comprehensive customer intelligence gathering system with 1 manager and 7 sub-agents",
   "nodes": [
     {
       "id": "input_node",
@@ -14,7 +14,7 @@
       "type": "Agent",
       "label": "Customer Intelligence Coordinator",
       "nodeCategory": "agent",
-      "agent_id": "696e5915e1e4c42b224b27c2",
+      "agent_id": "6973547b1b6268d7b95129f9",
       "position": { "x": 400, "y": 300 }
     },
     {
@@ -66,6 +66,14 @@
       "position": { "x": 700, "y": 600 }
     },
     {
+      "id": "drive_agent",
+      "type": "Agent",
+      "label": "Google Drive Intelligence Agent",
+      "nodeCategory": "agent",
+      "agent_id": "697353e41b6268d7b95129d6",
+      "position": { "x": 700, "y": 700 }
+    },
+    {
       "id": "output_node",
       "type": "Output",
       "label": "Unified Customer Intelligence",
@@ -81,19 +89,21 @@
     { "source": "manager_agent", "target": "meeting_agent" },
     { "source": "manager_agent", "target": "jira_agent" },
     { "source": "manager_agent", "target": "sheets_agent" },
+    { "source": "manager_agent", "target": "drive_agent" },
     { "source": "slack_agent", "target": "output_node" },
     { "source": "email_agent", "target": "output_node" },
     { "source": "document_agent", "target": "output_node" },
     { "source": "meeting_agent", "target": "output_node" },
     { "source": "jira_agent", "target": "output_node" },
-    { "source": "sheets_agent", "target": "output_node" }
+    { "source": "sheets_agent", "target": "output_node" },
+    { "source": "drive_agent", "target": "output_node" }
   ],
   "agents": [
     {
-      "agent_id": "696e5915e1e4c42b224b27c2",
+      "agent_id": "6973547b1b6268d7b95129f9",
       "name": "Customer Intelligence Coordinator",
       "type": "manager",
-      "description": "Orchestrates data retrieval from all sources, aggregates insights, calculates health scores, identifies sentiment patterns, and compiles unified customer view with action items",
+      "description": "Orchestrates data retrieval from all sources (Slack, Email, Google Docs, Meeting Notes, Jira, Google Sheets, Google Drive), aggregates insights, calculates health scores, identifies sentiment patterns, and compiles unified customer view with action items",
       "provider": "OpenAI",
       "model": "gpt-4.1",
       "temperature": 0.3,
@@ -105,7 +115,8 @@
         "696e58c0c3a33af8ef06367e",
         "696e58dee1e4c42b224b27bc",
         "696e58f5e1e4c42b224b27bd",
-        "696e5f39c3a33af8ef063753"
+        "696e5f39c3a33af8ef063753",
+        "697353e41b6268d7b95129d6"
       ]
     },
     {
@@ -183,8 +194,24 @@
         "rag_name": "googlesheetsdatakbfe6x",
         "name": "Google Sheets Data KB"
       }
+    },
+    {
+      "agent_id": "697353e41b6268d7b95129d6",
+      "name": "Google Drive Intelligence Agent",
+      "type": "sub-agent",
+      "description": "Analyzes customer data from Google Drive files and folders. Processes documents, spreadsheets, presentations, and other files to extract customer insights, project status, and collaboration patterns.",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.5,
+      "top_p": 0.95,
+      "tools": ["googledrive"],
+      "knowledge_base": {
+        "rag_id": "697353d4115a3970d17427a7",
+        "rag_name": "googledrivedatakbjn3q",
+        "name": "Google Drive Data KB"
+      }
     }
   ],
   "created_at": "2026-01-19T00:00:00Z",
-  "updated_at": "2026-01-19T00:00:00Z"
+  "updated_at": "2026-01-23T00:00:00Z"
 }

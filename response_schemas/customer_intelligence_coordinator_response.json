@@ -1,155 +1,58 @@
 {
   "agent_name": "Customer Intelligence Coordinator",
-  "agent_id": "696e5915e1e4c42b224b27c2",
+  "agent_id": "6973547b1b6268d7b95129f9",
   "agent_purpose": "manager",
-  "description": "Orchestrates customer intelligence gathering and aggregates insights from all sub-agents",
+  "description": "Coordinates 7 data sources to provide comprehensive customer intelligence with health scoring, sentiment analysis, and actionable insights",
   "response_schema": {
-    "status": "string",
+    "status": "string (success|error)",
     "result": {
-      "customer_name": "string",
-      "health_score": "number",
-      "health_trend": "string",
-      "overall_sentiment": {
-        "score": "number",
-        "label": "string"
-      },
-      "data_sources": {
-        "slack": {
+      "final_output": "object (aggregated result from sub-agents)",
+      "sub_agent_results": [
+        {
+          "agent_name": "string",
           "status": "string",
-          "data": {}
-        },
-        "email": {
-          "status": "string",
-          "data": {}
-        },
-        "documents": {
-          "status": "string",
-          "data": {}
-        },
-        "meetings": {
-          "status": "string",
-          "data": {}
-        },
-        "jira": {
-          "status": "string",
-          "data": {}
+          "output": "object"
         }
-      },
-      "recent_communications": [
-        "any"
       ],
-      "project_status": [
-        "any"
-      ],
-      "open_issues": [
-        "any"
-      ],
-      "action_items": [
-        "any"
-      ]
+      "summary": "string",
+      "workflow_completed": "boolean"
     },
-    "message": "string",
     "metadata": {
       "agent_name": "string",
-      "timestamp": "string",
-      "sources_queried": "number",
-      "sources_available": "number"
+      "timestamp": "string (ISO)",
+      "sub_agents_used": [
+        "string"
+      ]
     }
   },
   "example_response": {
-    "status": "error",
+    "status": "success",
     "result": {
-      "customer_name": "Acme Corp",
-      "health_score": 0,
-      "health_trend": "stable",
-      "overall_sentiment": {
-        "score": 0.0,
-        "label": "neutral"
+      "final_output": {
+        "aggregated": "data from all sub-agents"
       },
-      "data_sources": {
-        "slack": {
-          "status": "unavailable",
-          "data": {}
-        },
-        "email": {
-          "status": "unavailable",
-          "data": {}
-        },
-        "documents": {
-          "status": "unavailable",
-          "data": {}
-        },
-        "meetings": {
-          "status": "unavailable",
-          "data": {}
-        },
-        "jira": {
-          "status": "unavailable",
-          "data": {}
+      "sub_agent_results": [
+        {
+          "agent_name": "Sub-Agent 1",
+          "status": "success",
+          "output": {
+            "data": "result"
+          }
         }
-      },
-      "recent_communications": [],
-      "project_status": [],
-      "open_issues": [],
-      "action_items": []
+      ],
+      "summary": "All sub-agents completed successfully",
+      "workflow_completed": true
     },
-    "message": "No data retrieved from any source for Acme Corp. Unable to perform analysis. Please check connectivity to customer data sources.",
     "metadata": {
       "agent_name": "Customer Intelligence Coordinator",
-      "timestamp": "2024-06-11T13:39:52Z",
-      "sources_queried": 5,
-      "sources_available": 0
+      "timestamp": "2025-01-15T10:30:00Z",
+      "sub_agents_used": [
+        "Sub-Agent 1"
+      ]
     }
   },
-  "is_actual_tested": true,
-  "test_timestamp": "2026-01-19T16:22:20.617342",
+  "is_actual_tested": false,
+  "test_timestamp": null,
   "test_message_used": "Process this request and coordinate sub-agents",
-  "raw_test_response": "To proceed with compiling a unified customer intelligence report, I need more details:\n\n1. Please specify the customer's name or unique identifier. This is required to search Google Docs, Slack channels, and Jira projects related to them.\n2. For Slack, let me know specific channel names (e.g., #customer-support, #customer-feedback) or the customer\u2019s name handled in Slack. Also, provide a preferred time range (e.g., last 7 days, month, or quarter).\n3. For Jira, if applicable, provide relevant project key(s) or customer identifiers used in your Jira setup.\n4. Ensure Gmail and contacts integration is enabled. If so, please confirm the customer-related email domains or thread keywords.\n\nWith this info, I can orchestrate the sub-agents and aggregate insights across all channels.",
-  "test_error": "Response not valid JSON: Expecting value: line 1 column 1 (char 0)",
-  "actual_test_response": {
-    "status": "error",
-    "result": {
-      "customer_name": "Acme Corp",
-      "health_score": 0,
-      "health_trend": "stable",
-      "overall_sentiment": {
-        "score": 0.0,
-        "label": "neutral"
-      },
-      "data_sources": {
-        "slack": {
-          "status": "unavailable",
-          "data": {}
-        },
-        "email": {
-          "status": "unavailable",
-          "data": {}
-        },
-        "documents": {
-          "status": "unavailable",
-          "data": {}
-        },
-        "meetings": {
-          "status": "unavailable",
-          "data": {}
-        },
-        "jira": {
-          "status": "unavailable",
-          "data": {}
-        }
-      },
-      "recent_communications": [],
-      "project_status": [],
-      "open_issues": [],
-      "action_items": []
-    },
-    "message": "No data retrieved from any source for Acme Corp. Unable to perform analysis. Please check connectivity to customer data sources.",
-    "metadata": {
-      "agent_name": "Customer Intelligence Coordinator",
-      "timestamp": "2024-06-11T13:39:52Z",
-      "sources_queried": 5,
-      "sources_available": 0
-    }
-  },
-  "test_passed": true
+  "test_error": "Agent test timed out after 30 seconds"
 }
